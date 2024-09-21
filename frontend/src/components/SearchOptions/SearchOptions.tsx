@@ -2,17 +2,17 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchLocations } from '../../services/request';
 import styles from './SearchOptions.module.css';
 import ClickAwayListener from 'react-click-away-listener';
-import { InputSelectedState } from '../../pages/Home/Home';
 import { useSearchParams } from 'react-router-dom';
 import { FetchLocation } from '../../interfaces/request';
 import { getLocationValue } from '../../utils/location';
+import { InputSelectedState } from '../../pages/Home/util';
 
 const SearchOptions = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => {
   const [searchParams, setSearchParams] = useSearchParams();
   const search = searchParams.get('q') ?? '';
 
   const query = useQuery({
-    queryKey: ['locations', search],
+    queryKey: ['fetchLocations', search],
     queryFn: async () => await fetchLocations(search),
     enabled: search !== ''
   });

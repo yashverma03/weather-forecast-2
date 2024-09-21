@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './Search.module.css';
 import SearchOptions from '../SearchOptions/SearchOptions';
-import { InputSelectedState } from '../../pages/Home/Home';
+import { InputSelectedState } from '../../pages/Home/util';
 
 const Search = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -33,10 +33,7 @@ const Search = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => 
         placeholder='Enter a city...'
         onChange={handleSearch}
       />
-      <SearchOptions
-        isInputSelected={isInputSelected}
-        setIsInputSelected={setIsInputSelected}
-      />
+      <SearchOptions isInputSelected={isInputSelected} setIsInputSelected={setIsInputSelected} />
     </section>
   );
 };
