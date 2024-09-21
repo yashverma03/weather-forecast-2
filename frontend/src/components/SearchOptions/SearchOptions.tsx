@@ -7,9 +7,12 @@ import { FetchLocation } from '../../interfaces/request';
 import { getLocationValue } from '../../utils/location';
 import { InputSelectedState } from '../../pages/Home/util';
 
-const SearchOptions = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('q') ?? '';
+interface Props extends InputSelectedState {
+  search: string;
+}
+
+const SearchOptions = ({ search, isInputSelected, setIsInputSelected }: Props) => {
+  const setSearchParams = useSearchParams()[1];
 
   const query = useQuery({
     queryKey: ['fetchLocations', search],

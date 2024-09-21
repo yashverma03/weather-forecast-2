@@ -2,27 +2,17 @@ import { useSearchParams } from 'react-router-dom';
 import styles from './Search.module.css';
 import SearchOptions from '../SearchOptions/SearchOptions';
 import { InputSelectedState } from '../../pages/Home/util';
+import { useState } from 'react';
 
 const Search = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const search = searchParams.get('q') ?? '';
+  const [searchParams] = useSearchParams();
+  const defaultSearch = searchParams.get('q') ?? '';
+  const [search, setSearch] = useState(defaultSearch);
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
+    setSearch(newValue);
     setIsInputSelected(newValue !== '');
-    if (newValue.trim() === '') {
-      setSearchParams({}, { replace: true });
-    } else {
-      setSearchParams(
-        (prev) => {
-          prev.set('q', newValue);
-          prev.delete('lon');
-          prev.delete('lat');
-          return prev;
-        },
-        { replace: true }
-      );
-    }
   };
 
   return (
@@ -30,10 +20,14 @@ const Search = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => 
       <input
         className={styles.input}
         value={search}
-        placeholder='Enter a city...'
         onChange={handleSearch}
+        placeholder='Enter a city...'
       />
-      <SearchOptions isInputSelected={isInputSelected} setIsInputSelected={setIsInputSelected} />
+      <SearchOptions
+        search={search}
+        isInputSelected={isInputSelected}
+        setIsInputSelected={setIsInputSelected}
+      />
     </section>
   );
 };
