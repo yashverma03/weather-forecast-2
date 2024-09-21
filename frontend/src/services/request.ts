@@ -28,7 +28,7 @@ export const fetchWeatherDetails = async (lat: string | null, lon: string | null
   }
 };
 
-export const fetchWeatherData = async (lat: string, lon: string) => {
+const fetchWeatherData = async (lat: string, lon: string) => {
   try {
     const params = { lat, lon };
     const { data } = await axiosInstance.get<FetchWeatherData>('data/2.5/weather', { params });
@@ -44,7 +44,7 @@ export const fetchWeatherData = async (lat: string, lon: string) => {
   }
 };
 
-export const fetchForecastData = async (lat: string, lon: string) => {
+const fetchForecastData = async (lat: string, lon: string) => {
   try {
     const params = { lat, lon, cnt: 5 * 8 };
     const { data } = await axiosInstance.get<FetchForecastData>('data/2.5/forecast', { params });

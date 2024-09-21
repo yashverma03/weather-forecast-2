@@ -1,8 +1,12 @@
+import { useTemperature } from '../../../contexts/temperatureContext';
 import { WeatherData } from '../../../interfaces/location';
+import { getTemperature } from '../../../utils/temperature.util';
 import { getWeatherIcon } from '../../../utils/weather-icon';
 import styles from './Weather.module.css';
 
 const Weather = ({ city, temperature, weatherIconName, weatherDescription }: WeatherData) => {
+  const { temperatureUnit } = useTemperature();
+
   return (
     <section className={styles.section}>
       <article className={styles.article}>
@@ -24,7 +28,9 @@ const Weather = ({ city, temperature, weatherIconName, weatherDescription }: Wea
           </div>
           <div className={styles.row}>
             <p className={styles.col1}>Temparature: </p>
-            <p className={styles.col2}>{temperature}°C</p>
+            <p className={styles.col2}>
+              {getTemperature(temperature, temperatureUnit)}
+            </p>
           </div>
           <div className={styles.row}>
             <p className={styles.col1}>Weather condition:</p>

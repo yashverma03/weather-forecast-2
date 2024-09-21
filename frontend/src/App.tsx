@@ -3,13 +3,16 @@ import { BrowserRouter } from 'react-router-dom';
 import './App.css';
 import { queryClient } from './config/query-client';
 import Home from './pages/Home/Home';
+import { TemperatureProvider } from './contexts/temperatureContext';
 
 const App = () => {
   return (
     <BrowserRouter>
-      <QueryClientProvider client={queryClient}>
-        <Home />
-      </QueryClientProvider>
+      <TemperatureProvider>
+        <QueryClientProvider client={queryClient}>
+          <Home />
+        </QueryClientProvider>
+      </TemperatureProvider>
     </BrowserRouter>
   );
 };
