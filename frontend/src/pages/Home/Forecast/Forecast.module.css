@@ -1,0 +1,23 @@
+.section {
+  @apply w-full max-w-[1440px] mx-auto flex items-center justify-center;
+}
+
+.article {
+  @apply w-full mx-[5%] flex flex-col items-center mt-[100px] mb-[130px];
+}
+
+.title {
+  @apply text-[30px] font-[600];
+}
+
+.rowHeading {
+  @apply w-full flex items-center justify-center gap-[3%] mt-[40px];
+}
+
+.rowHeadingItem {
+  @apply w-full max-w-[800px] text-[20px] font-[500] text-[#3d2bd9] text-center;
+}
+
+.details {
+  @apply w-full flex flex-col justify-center gap-[50px] mt-[60px];
+}
