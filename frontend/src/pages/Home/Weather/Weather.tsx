@@ -20,10 +20,10 @@ const Weather = ({ city, temperature, weatherIconName, weatherDescription }: Wea
           </div>
           <div className={styles.row}>
             <p className={styles.col1}>City:</p>
-            <h3 className={styles.col2}>{city}</h3>
+            <p className={styles.col2}>{city}</p>
           </div>
           <div className={styles.row}>
-            <p className={styles.col1}>Temparature in C: </p>
+            <p className={styles.col1}>Temparature: </p>
             <p className={styles.col2}>{temperature}°C</p>
           </div>
           <div className={styles.row}>

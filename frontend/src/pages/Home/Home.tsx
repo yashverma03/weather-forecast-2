@@ -39,7 +39,7 @@ const Home = () => {
     <main>
       <Search isInputSelected={isInputSelected} setIsInputSelected={setIsInputSelected} />
       {weatherData && <Weather {...weatherData} />}
-      {forecastData && <ForecastCard {...forecastData} />}
+      {forecastData && <ForecastCard forecastData={forecastData} />}
     </main>
   );
 };

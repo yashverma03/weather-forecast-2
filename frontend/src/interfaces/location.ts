@@ -6,7 +6,7 @@ export interface WeatherData {
 }
 
 export interface ForecastData {
-  date: number;
+  date: string;
   minTemperature: number;
   maxTemperature: number;
   weatherIconName: string;

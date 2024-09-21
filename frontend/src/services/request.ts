@@ -46,14 +46,16 @@ export const fetchWeatherData = async (lat: string, lon: string) => {
 
 export const fetchForecastData = async (lat: string, lon: string) => {
   try {
-    const params = { lat, lon, cnt: 5 };
+    const params = { lat, lon, cnt: 5 * 8 };
     const { data } = await axiosInstance.get<FetchForecastData>('data/2.5/forecast', { params });
-    return data.list.map<ForecastData>((item) => ({
-      date: item.dt,
-      minTemperature: item.main.temp_min,
-      maxTemperature: item.main.temp_max,
-      weatherIconName: item.weather[0].icon
-    }));
+    return data.list
+      .filter((_, index) => index % 8 === 0)
+      .map<ForecastData>((item) => ({
+        date: item.dt_txt,
+        minTemperature: item.main.temp_min,
+        maxTemperature: item.main.temp_max,
+        weatherIconName: item.weather[0].icon
+      }));
   } catch (error) {
     handleApiError(error);
   }

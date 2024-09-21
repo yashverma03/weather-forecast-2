@@ -10,7 +10,7 @@
 }
 
 body {
-  @apply min-w-[345px] overflow-hidden;
+  @apply min-w-[365px];
 }
 
 *:focus {
