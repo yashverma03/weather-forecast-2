@@ -6,12 +6,13 @@ import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { fetchWeatherDetails } from '../../services/request';
 import Spinner from '../../components/Spinner/Spinner';
+import { DEFAULT_LOCATION } from '../../constants/default-location';
 
 const Home = () => {
   const [isInputSelected, setIsInputSelected] = useState(false);
   const [searchParams] = useSearchParams();
-  const lat = searchParams.get('lat');
-  const lon = searchParams.get('lon');
+  const lat = searchParams.get('lat') ?? DEFAULT_LOCATION.LAT;
+  const lon = searchParams.get('lon') ?? DEFAULT_LOCATION.LON;
 
   const query = useQuery({
     queryKey: ['fetchWeatherDetails', lat, lon],
