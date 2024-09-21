@@ -30,7 +30,11 @@ const Home = () => {
   }
 
   if (query.isError) {
-    return <p>Something went wrong!</p>;
+    return (
+      <p className='w-full h-screen flex items-center justify-center text-[20px] text-[#FF0000]'>
+        Something went wrong!
+      </p>
+    );
   }
 
   const { weatherData, forecastData } = query.data ?? {};

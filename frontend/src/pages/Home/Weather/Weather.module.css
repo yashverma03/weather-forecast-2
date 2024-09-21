@@ -3,7 +3,7 @@
 }
 
 .article {
-  @apply w-full mx-[5%] flex flex-col items-center mt-[60px];
+  @apply w-full mx-[5%] flex flex-col items-center mt-[40px];
 }
 
 .title {

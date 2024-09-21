@@ -21,7 +21,7 @@ const Forecast = ({ forecastData }: Props) => {
           <h3 className={styles.rowHeadingItem}>Date</h3>
           <h3 className={styles.rowHeadingItem}>Minimum temparature</h3>
           <h3 className={styles.rowHeadingItem}>Maximum temparature</h3>
-          <h3 className={styles.rowHeadingItem}>Weather icon:</h3>
+          <h3 className={styles.rowHeadingItem}>Weather icon</h3>
         </div>
         <div className={styles.details}>{getForecastData()}</div>
       </article>

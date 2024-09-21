@@ -1,5 +1,5 @@
 .section {
-  @apply relative mx-auto w-full max-w-[700px] py-[20px];
+  @apply relative mx-auto w-full max-w-[700px] pt-[40px] pb-[20px];
 }
 
 .input {
