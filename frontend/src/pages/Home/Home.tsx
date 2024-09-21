@@ -11,8 +11,14 @@ import { DEFAULT_LOCATION } from '../../constants/default-location';
 const Home = () => {
   const [isInputSelected, setIsInputSelected] = useState(false);
   const [searchParams] = useSearchParams();
-  const lat = searchParams.get('lat') ?? DEFAULT_LOCATION.LAT;
-  const lon = searchParams.get('lon') ?? DEFAULT_LOCATION.LON;
+  const search = searchParams.get('q');
+  let lat = searchParams.get('lat');
+  let lon = searchParams.get('lon');
+
+  if (!search && !lat && !lon) {
+    lat = DEFAULT_LOCATION.LAT;
+    lon = DEFAULT_LOCATION.LON;
+  }
 
   const query = useQuery({
     queryKey: ['fetchWeatherDetails', lat, lon],

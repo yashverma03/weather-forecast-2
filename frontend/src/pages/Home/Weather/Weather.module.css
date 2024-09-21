@@ -1,0 +1,31 @@
+.section {
+  @apply w-full max-w-[1440px] mx-auto flex items-center justify-center;
+}
+
+.article {
+  @apply w-full mx-[5%] flex flex-col items-center mt-[60px];
+}
+
+.title {
+  @apply text-[30px] font-[600];
+}
+
+.details {
+  @apply w-[50%] flex flex-col justify-center gap-[30px] mt-[60px];
+}
+
+.row {
+  @apply w-full flex items-center justify-center gap-[2%];
+}
+
+.col1 {
+  @apply w-1/2 text-[20px] font-[500] text-[#2daf5b];
+}
+
+.col2 {
+  @apply w-1/2 text-[20px] font-[500];
+}
+
+.weatherIcon {
+  @apply size-[60px] flex-shrink-0 bg-[#adacac] my-[-10px];
+}
