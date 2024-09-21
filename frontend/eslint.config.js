@@ -14,7 +14,8 @@ export default [
       ...pluginReact.configs.flat.recommended.rules,
       // overides
       'react/react-in-jsx-scope': 'off',
-      '@typescript-eslint/no-explicit-any': 'off'
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-console': ['error', { allow: ['warn', 'error'] }]
     }
   }
 ];

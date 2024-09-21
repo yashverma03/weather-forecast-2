@@ -15,8 +15,7 @@ const Home = () => {
 
   const query = useQuery({
     queryKey: ['fetchWeatherDetails', lat, lon],
-    queryFn: async () => await fetchWeatherDetails(lat, lon),
-    enabled: false
+    queryFn: async () => await fetchWeatherDetails(lat, lon)
   });
 
   if (query.isLoading) {
@@ -27,19 +26,13 @@ const Home = () => {
     return <p>Something went wrong!</p>;
   }
 
-  if (!query.data) {
-    return null;
-  }
-  const { weatherData, forecastData } = query.data;
-  if (!weatherData || !forecastData) {
-    return null;
-  }
+  const { weatherData, forecastData } = query.data ?? {};
 
   return (
     <main>
       <Search isInputSelected={isInputSelected} setIsInputSelected={setIsInputSelected} />
-      <Weather {...weatherData} />
-      <ForecastCard {...forecastData} />
+      {weatherData && <Weather {...weatherData} />}
+      {forecastData && <ForecastCard {...forecastData} />}
     </main>
   );
 };
