@@ -1,0 +1,17 @@
+.section {
+  @apply absolute top-[90px] left-1/2 -translate-x-1/2 w-full max-w-[700px] flex flex-col gap-[20px] py-[20px] px-[2%] bg-[#ffe7e7] rounded-lg;
+}
+
+.loading,
+.error,
+.empty {
+  @apply text-center my-auto py-[50px];
+}
+
+.error {
+  @apply text-[red];
+}
+
+.button {
+  @apply bg-[#fbfbfb] w-full px-[3%] py-[10px] rounded-[15px] hover:text-[#5757ef];
+}

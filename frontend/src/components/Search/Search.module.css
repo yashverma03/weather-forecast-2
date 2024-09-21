@@ -1,0 +1,7 @@
+.section {
+  @apply relative mx-auto w-full max-w-[700px] py-[20px];
+}
+
+.input {
+  @apply w-full bg-[#e0e0e0] py-[15px] px-[5%] rounded-[20px] placeholder:text-[#464646];
+}
