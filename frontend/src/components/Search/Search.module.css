@@ -1,5 +1,5 @@
 .section {
-  @apply flex gap-[3%] justify-center items-center mx-auto w-full pt-[40px] pb-[20px];
+  @apply flex gap-[20px] justify-center items-center mx-auto w-[90%] pt-[40px] pb-[20px];
 }
 
 .inputWrap {
@@ -16,4 +16,14 @@
 
 .refreshButton {
   @apply bg-blue-700 px-[30px] py-[10px] rounded-[15px] text-white hover:bg-blue-800;
+}
+
+@media screen and (max-width: 1100px) {
+  .section {
+    @apply flex-wrap;
+  }
+
+  .inputWrap {
+    @apply max-w-[400px];
+  }
 }

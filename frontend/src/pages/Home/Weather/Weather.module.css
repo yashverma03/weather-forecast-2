@@ -11,7 +11,7 @@
 }
 
 .details {
-  @apply w-[50%] flex flex-col justify-center gap-[30px] mt-[60px];
+  @apply w-full max-w-[500px] flex flex-col justify-center gap-[30px] mt-[60px] text-center;
 }
 
 .row {
@@ -27,5 +27,5 @@
 }
 
 .weatherIcon {
-  @apply size-[60px] flex-shrink-0 bg-[#adacac] my-[-10px];
+  @apply size-[60px] flex-shrink-0 bg-[#adacac] my-[-10px] mx-auto;
 }

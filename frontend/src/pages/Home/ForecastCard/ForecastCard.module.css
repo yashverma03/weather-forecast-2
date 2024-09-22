@@ -9,3 +9,18 @@
 .weatherIcon {
   @apply size-[60px] flex-shrink-0 bg-[#adacac] my-[-5px] mx-auto;
 }
+
+/* mobile */
+@media screen and (max-width: 800px) {
+  .forecastWrap {
+    @apply gap-[2%];
+  }
+
+  .rowItem {
+    @apply text-[16px];
+  }
+
+  .weatherIcon {
+    @apply size-[40px] my-0;
+  }
+}

@@ -7,7 +7,7 @@
 }
 
 .title {
-  @apply text-[30px] font-[600];
+  @apply text-[30px] font-[600] text-center;
 }
 
 .rowHeading {
@@ -20,4 +20,19 @@
 
 .details {
   @apply w-full flex flex-col justify-center gap-[50px] mt-[60px];
+}
+
+/* mobile */
+@media screen and (max-width: 800px) {
+  .article {
+    @apply mx-[3%];
+  }
+
+  .rowHeading {
+    @apply gap-[2%];
+  }
+
+  .rowHeadingItem {
+    @apply text-[16px];
+  }
 }
