@@ -1,5 +1,5 @@
-import { lazy, Suspense, useState } from 'react';
-import Search from '../../components/Search/Search';
+import { lazy, Suspense } from 'react';
+import Search from './Search/Search';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { fetchWeatherDetails } from '../../services/request';
@@ -11,7 +11,6 @@ const Weather = lazy(() => import('./Weather/Weather'));
 const Forecast = lazy(() => import('./Forecast/Forecast'));
 
 const Home = () => {
-  const [isInputSelected, setIsInputSelected] = useState(false);
   const [searchParams] = useSearchParams();
   const search = searchParams.get('q');
   let lat = searchParams.get('lat');
@@ -43,7 +42,7 @@ const Home = () => {
 
   return (
     <main>
-      <Search isInputSelected={isInputSelected} setIsInputSelected={setIsInputSelected} />
+      <Search />
       <Suspense fallback={<Spinner />}>
         {weatherData && <Weather {...weatherData} />}
         {forecastData && <Forecast forecastData={forecastData} />}

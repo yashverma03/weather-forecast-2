@@ -1,0 +1,13 @@
+.inputWrap {
+  @apply relative w-full max-w-[600px];
+}
+
+.input {
+  @apply w-full bg-[#e0e0e0] py-[15px] px-[5%] rounded-[20px] placeholder:text-[#464646];
+}
+
+@media screen and (max-width: 1100px) {
+  .inputWrap {
+    @apply max-w-[400px];
+  }
+}
