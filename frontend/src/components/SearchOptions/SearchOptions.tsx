@@ -5,10 +5,10 @@ import ClickAwayListener from 'react-click-away-listener';
 import { useSearchParams } from 'react-router-dom';
 import { FetchLocation } from '../../interfaces/request';
 import { getLocationValue } from '../../utils/location';
-import { InputSelectedState } from '../../pages/Home/util';
 import { QueryKeyEnum } from '../../enums/query-key';
+import { IsInputSelectedState } from '../../interfaces/is-input-selected';
 
-interface Props extends InputSelectedState {
+interface Props extends IsInputSelectedState {
   search: string;
 }
 

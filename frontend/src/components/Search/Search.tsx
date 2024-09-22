@@ -1,15 +1,15 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './Search.module.css';
 import SearchOptions from '../SearchOptions/SearchOptions';
-import { InputSelectedState } from '../../pages/Home/util';
 import { useEffect, useState } from 'react';
 import { TemperatureUnit } from '../../interfaces/temperature-unit';
 import { useTemperature } from '../../contexts/temperature-context';
 import { QueryKeyEnum } from '../../enums/query-key';
 import { useQueryClient } from '@tanstack/react-query';
 import { debounce } from 'lodash';
+import { IsInputSelectedState } from '../../interfaces/is-input-selected';
 
-const Search = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => {
+const Search = ({ isInputSelected, setIsInputSelected }: IsInputSelectedState) => {
   const [searchParams] = useSearchParams();
   const defaultSearch = searchParams.get('q') ?? '';
   const [search, setSearch] = useState(defaultSearch);
