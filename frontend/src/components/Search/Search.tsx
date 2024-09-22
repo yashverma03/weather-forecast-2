@@ -2,24 +2,41 @@ import { useSearchParams } from 'react-router-dom';
 import styles from './Search.module.css';
 import SearchOptions from '../SearchOptions/SearchOptions';
 import { InputSelectedState } from '../../pages/Home/util';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { TemperatureUnit } from '../../interfaces/temperature-unit';
 import { useTemperature } from '../../contexts/temperature-context';
 import { QueryKeyEnum } from '../../enums/query-key';
 import { useQueryClient } from '@tanstack/react-query';
+import { debounce } from 'lodash';
 
 const Search = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => {
   const [searchParams] = useSearchParams();
   const defaultSearch = searchParams.get('q') ?? '';
   const [search, setSearch] = useState(defaultSearch);
+  const [debounceSearch, setDebounceSearch] = useState(defaultSearch);
   const { temperatureUnit, setTemperatureUnit } = useTemperature();
   const queryClient = useQueryClient();
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value;
-    setSearch(newValue);
-    setIsInputSelected(newValue !== '');
+    const { value } = event.target;
+    setSearch(value);
+    setIsInputSelected(value !== '');
   };
+
+  const debouncedSetSearch = debounce((value: string) => {
+    setDebounceSearch(value);
+  }, 1000);
+
+  useEffect(() => {
+    if (search.length === 1) {
+      setDebounceSearch(search);
+    } else {
+      debouncedSetSearch(search);
+    }
+    return () => {
+      debouncedSetSearch.cancel();
+    };
+  }, [search]);
 
   const handleUnitChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value as TemperatureUnit;
@@ -40,7 +57,7 @@ const Search = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => 
           placeholder='Enter a city...'
         />
         <SearchOptions
-          search={search}
+          search={debounceSearch}
           isInputSelected={isInputSelected}
           setIsInputSelected={setIsInputSelected}
         />
