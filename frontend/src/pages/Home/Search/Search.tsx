@@ -4,8 +4,10 @@ import { useTemperature } from '../../../contexts/temperature-context';
 import { QueryKeyEnum } from '../../../enums/query-key';
 import { useQueryClient } from '@tanstack/react-query';
 import SearchInput from '../../../components/SearchInput/SearchInput';
+import { useState } from 'react';
 
 const Search = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const { temperatureUnit, setTemperatureUnit } = useTemperature();
   const queryClient = useQueryClient();
 
@@ -14,8 +16,13 @@ const Search = () => {
     setTemperatureUnit(value);
   };
 
-  const handleRefresh = () => {
-    queryClient.invalidateQueries({ queryKey: [QueryKeyEnum.FetchWeatherDetails] });
+  const handleRefresh = async () => {
+    if (isLoading) {
+      return;
+    }
+    setIsLoading(true);
+    await queryClient.invalidateQueries({ queryKey: [QueryKeyEnum.FetchWeatherDetails] });
+    setIsLoading(false);
   };
 
   return (
@@ -25,7 +32,7 @@ const Search = () => {
         <option value='celsius'>Celsius</option>
         <option value='fahrenheit'>Fahrenheit</option>
       </select>
-      <button className={styles.refreshButton} onClick={handleRefresh}>
+      <button className={styles.refreshButton} onClick={handleRefresh} disabled={isLoading}>
         Pull to refresh
       </button>
     </section>

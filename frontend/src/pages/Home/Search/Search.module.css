@@ -7,7 +7,7 @@
 }
 
 .refreshButton {
-  @apply bg-blue-700 px-[30px] py-[10px] rounded-[15px] text-white hover:bg-blue-800;
+  @apply bg-blue-700 px-[30px] py-[10px] rounded-[15px] text-white hover:bg-blue-800 disabled:cursor-not-allowed;
 }
 
 @media screen and (max-width: 1100px) {
