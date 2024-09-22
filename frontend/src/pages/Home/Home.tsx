@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import Weather from './Weather/Weather';
+import { lazy, Suspense, useState } from 'react';
 import Search from '../../components/Search/Search';
 import { useQuery } from '@tanstack/react-query';
 import { useSearchParams } from 'react-router-dom';
 import { fetchWeatherDetails } from '../../services/request';
 import Spinner from '../../components/Spinner/Spinner';
 import { DEFAULT_LOCATION } from '../../constants/default-location';
-import Forecast from './Forecast/Forecast';
 import { QueryKeyEnum } from '../../enums/query-key';
+
+const Weather = lazy(() => import('./Weather/Weather'));
+const Forecast = lazy(() => import('./Forecast/Forecast'));
 
 const Home = () => {
   const [isInputSelected, setIsInputSelected] = useState(false);
@@ -43,8 +44,10 @@ const Home = () => {
   return (
     <main>
       <Search isInputSelected={isInputSelected} setIsInputSelected={setIsInputSelected} />
-      {weatherData && <Weather {...weatherData} />}
-      {forecastData && <Forecast forecastData={forecastData} />}
+      <Suspense fallback={<Spinner />}>
+        {weatherData && <Weather {...weatherData} />}
+        {forecastData && <Forecast forecastData={forecastData} />}
+      </Suspense>
     </main>
   );
 };
