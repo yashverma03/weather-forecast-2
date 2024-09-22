@@ -1,6 +1,6 @@
 import { useTemperature } from '../../../contexts/temperature-context';
 import { WeatherData } from '../../../interfaces/location';
-import { getTemperature } from '../../../utils/temperature.util';
+import { getTemperature } from '../../../utils/temperature';
 import { getWeatherIcon } from '../../../utils/weather-icon';
 import styles from './Weather.module.css';
 
