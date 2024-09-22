@@ -7,6 +7,7 @@ import { fetchWeatherDetails } from '../../services/request';
 import Spinner from '../../components/Spinner/Spinner';
 import { DEFAULT_LOCATION } from '../../constants/default-location';
 import Forecast from './Forecast/Forecast';
+import { QueryKeyEnum } from '../../enums/query-key';
 
 const Home = () => {
   const [isInputSelected, setIsInputSelected] = useState(false);
@@ -21,7 +22,7 @@ const Home = () => {
   }
 
   const query = useQuery({
-    queryKey: ['fetchWeatherDetails', lat, lon],
+    queryKey: [QueryKeyEnum.FetchWeatherDetails, lat, lon],
     queryFn: async () => await fetchWeatherDetails(lat, lon)
   });
 

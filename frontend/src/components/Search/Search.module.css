@@ -1,7 +1,19 @@
 .section {
-  @apply relative mx-auto w-full max-w-[700px] pt-[40px] pb-[20px];
+  @apply flex gap-[3%] justify-center items-center mx-auto w-full pt-[40px] pb-[20px];
+}
+
+.inputWrap {
+  @apply relative w-full max-w-[600px];
 }
 
 .input {
   @apply w-full bg-[#e0e0e0] py-[15px] px-[5%] rounded-[20px] placeholder:text-[#464646];
+}
+
+.dropdown {
+  @apply border bg-[#ffe7e7] rounded-[20px] py-[10px] px-[20px] cursor-pointer hover:bg-[#f7dada];
+}
+
+.refreshButton {
+  @apply bg-blue-700 px-[30px] py-[10px] rounded-[15px] text-white hover:bg-blue-800;
 }

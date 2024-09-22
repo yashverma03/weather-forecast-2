@@ -1,4 +1,4 @@
-import { axiosInstance } from '../config/axios';
+import { axiosInstance } from '../configs/axios';
 import { ForecastData, WeatherData } from '../interfaces/location';
 import { FetchForecastData, FetchLocation, FetchWeatherData } from '../interfaces/request';
 import { handleApiError } from '../utils/error';
@@ -16,7 +16,7 @@ export const fetchLocations = async (city: string) => {
 export const fetchWeatherDetails = async (lat: string | null, lon: string | null) => {
   try {
     if (!lat || !lon) {
-      return null;
+      throw new Error('Latitude and longitude are required');
     }
     const [weatherData, forecastData] = await Promise.all([
       fetchWeatherData(lat, lon),

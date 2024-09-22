@@ -1,4 +1,4 @@
-import { useTemperature } from '../../../contexts/temperatureContext';
+import { useTemperature } from '../../../contexts/temperature-context';
 import { ForecastData } from '../../../interfaces/location';
 import { getTemperature } from '../../../utils/temperature.util';
 import { getWeatherIcon } from '../../../utils/weather-icon';

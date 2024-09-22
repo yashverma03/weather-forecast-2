@@ -6,6 +6,7 @@ import { useSearchParams } from 'react-router-dom';
 import { FetchLocation } from '../../interfaces/request';
 import { getLocationValue } from '../../utils/location';
 import { InputSelectedState } from '../../pages/Home/util';
+import { QueryKeyEnum } from '../../enums/query-key';
 
 interface Props extends InputSelectedState {
   search: string;
@@ -15,7 +16,7 @@ const SearchOptions = ({ search, isInputSelected, setIsInputSelected }: Props) =
   const setSearchParams = useSearchParams()[1];
 
   const query = useQuery({
-    queryKey: ['fetchLocations', search],
+    queryKey: [QueryKeyEnum.FetchLocations, search],
     queryFn: async () => await fetchLocations(search),
     enabled: search !== ''
   });

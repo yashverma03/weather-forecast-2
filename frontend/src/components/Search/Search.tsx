@@ -4,13 +4,16 @@ import SearchOptions from '../SearchOptions/SearchOptions';
 import { InputSelectedState } from '../../pages/Home/util';
 import { useState } from 'react';
 import { TemperatureUnit } from '../../interfaces/temperature-unit';
-import { useTemperature } from '../../contexts/temperatureContext';
+import { useTemperature } from '../../contexts/temperature-context';
+import { QueryKeyEnum } from '../../enums/query-key';
+import { useQueryClient } from '@tanstack/react-query';
 
 const Search = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => {
   const [searchParams] = useSearchParams();
   const defaultSearch = searchParams.get('q') ?? '';
   const [search, setSearch] = useState(defaultSearch);
   const { temperatureUnit, setTemperatureUnit } = useTemperature();
+  const queryClient = useQueryClient();
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
@@ -24,28 +27,31 @@ const Search = ({ isInputSelected, setIsInputSelected }: InputSelectedState) => 
   };
 
   const handleRefresh = () => {
-    // TODO: implement refresh
+    queryClient.invalidateQueries({ queryKey: [QueryKeyEnum.FetchWeatherDetails] });
   };
 
   return (
     <section className={styles.section}>
-      <input
-        className={styles.input}
-        value={search}
-        onChange={handleSearch}
-        placeholder='Enter a city...'
-      />
-      <SearchOptions
-        search={search}
-        isInputSelected={isInputSelected}
-        setIsInputSelected={setIsInputSelected}
-      />
-      {/* TODO: add styles */}
+      <div className={styles.inputWrap}>
+        <input
+          className={styles.input}
+          value={search}
+          onChange={handleSearch}
+          placeholder='Enter a city...'
+        />
+        <SearchOptions
+          search={search}
+          isInputSelected={isInputSelected}
+          setIsInputSelected={setIsInputSelected}
+        />
+      </div>
       <select className={styles.dropdown} value={temperatureUnit} onChange={handleUnitChange}>
         <option value='celsius'>Celsius</option>
         <option value='fahrenheit'>Fahrenheit</option>
       </select>
-      <button onClick={handleRefresh}>Pull to refresh</button>
+      <button className={styles.refreshButton} onClick={handleRefresh}>
+        Pull to refresh
+      </button>
     </section>
   );
 };
