@@ -19,7 +19,7 @@ const SearchInput = () => {
 
   const debouncedSetSearch = debounce((value: string) => {
     setDebounceSearch(value);
-  }, 1000);
+  }, 500);
 
   useEffect(() => {
     if (search.length === 1) {

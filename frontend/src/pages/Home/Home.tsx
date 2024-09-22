@@ -26,28 +26,36 @@ const Home = () => {
     queryFn: async () => await fetchWeatherDetails(lat, lon)
   });
 
-  if (query.isLoading) {
-    return <Spinner />;
-  }
+  const getWeatherDetails = () => {
+    if (query.isLoading || query.isRefetching) {
+      return <Spinner />;
+    }
 
-  if (query.isError) {
+    if (query.isError) {
+      return (
+        <p className='w-full h-screen flex items-center justify-center text-[20px] text-[#FF0000]'>
+          Something went wrong!
+        </p>
+      );
+    }
+
+    const { weatherData, forecastData } = query.data ?? {};
+
     return (
-      <p className='w-full h-screen flex items-center justify-center text-[20px] text-[#FF0000]'>
-        Something went wrong!
-      </p>
+      <>
+        <Suspense fallback={<Spinner />}>
+          {weatherData && <Weather {...weatherData} />}
+          {forecastData && <Forecast forecastData={forecastData} />}
+        </Suspense>
+      </>
     );
-  }
-
-  const { weatherData, forecastData } = query.data ?? {};
+  };
 
   return (
-    <main>
+    <>
       <Search />
-      <Suspense fallback={<Spinner />}>
-        {weatherData && <Weather {...weatherData} />}
-        {forecastData && <Forecast forecastData={forecastData} />}
-      </Suspense>
-    </main>
+      {getWeatherDetails()}
+    </>
   );
 };
 
