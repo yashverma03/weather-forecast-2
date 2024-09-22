@@ -7,15 +7,14 @@ import { FetchLocation } from '../../interfaces/request';
 import { getLocationValue } from '../../utils/location';
 import { QueryKeyEnum } from '../../enums/query-key';
 import { IsInputSelectedState } from '../../interfaces/is-input-selected';
+import { SearchState } from '../../interfaces/search';
 
-interface Props extends IsInputSelectedState {
-  search: string;
-}
+interface Props extends IsInputSelectedState, SearchState {}
 
 /**
  * SearchOptions component displays location suggestions based on user input.
  */
-const SearchOptions = ({ search, isInputSelected, setIsInputSelected }: Props) => {
+const SearchOptions = ({ search, setSearch, isInputSelected, setIsInputSelected }: Props) => {
   const setSearchParams = useSearchParams()[1];
 
   const query = useQuery({
@@ -35,6 +34,7 @@ const SearchOptions = ({ search, isInputSelected, setIsInputSelected }: Props) =
       prev.set('lat', location.lat.toString());
       return prev;
     });
+    setSearch(placeName); // Update search input with selected
     setIsInputSelected(false); // Close suggestions after selection
   };
 

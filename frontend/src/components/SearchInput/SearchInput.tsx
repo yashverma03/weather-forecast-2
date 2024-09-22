@@ -54,6 +54,7 @@ const SearchInput = () => {
       />
       <SearchOptions
         search={debounceSearch}
+        setSearch={setSearch}
         isInputSelected={isInputSelected}
         setIsInputSelected={setIsInputSelected}
       />
