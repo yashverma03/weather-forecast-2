@@ -12,15 +12,21 @@ interface Props extends IsInputSelectedState {
   search: string;
 }
 
+/**
+ * SearchOptions component displays location suggestions based on user input.
+ */
 const SearchOptions = ({ search, isInputSelected, setIsInputSelected }: Props) => {
   const setSearchParams = useSearchParams()[1];
 
   const query = useQuery({
     queryKey: [QueryKeyEnum.FetchLocations, search],
     queryFn: async () => await fetchLocations(search),
-    enabled: search !== ''
+    enabled: search !== '' // Only fetch locations if search is not empty
   });
 
+  /**
+   * Handles setting the selected location in the search parameters.
+   */
   const handleSetLocation = (location: FetchLocation) => {
     const placeName = getLocationValue(location);
     setSearchParams((prev) => {
@@ -29,9 +35,12 @@ const SearchOptions = ({ search, isInputSelected, setIsInputSelected }: Props) =
       prev.set('lat', location.lat.toString());
       return prev;
     });
-    setIsInputSelected(false);
+    setIsInputSelected(false); // Close suggestions after selection
   };
 
+  /**
+   * Renders the locations or loading/error states based on the query.
+   */
   const getLocations = () => {
     if (query.isLoading) {
       return <div className={styles.loading}>Loading...</div>;
@@ -53,7 +62,7 @@ const SearchOptions = ({ search, isInputSelected, setIsInputSelected }: Props) =
   };
 
   if (!isInputSelected) {
-    return null;
+    return null; // Don't render suggestions if the input is not selected
   }
 
   return (

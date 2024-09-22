@@ -8,6 +8,11 @@ import weatherIcon11D from '../assets/home/weather/11d.png';
 import weatherIcon13D from '../assets/home/weather/13d.png';
 import weatherIcon50D from '../assets/home/weather/50d.png';
 
+/**
+ * Returns the corresponding weather icon based on the provided icon name.
+ * @param {string} iconName - The icon code representing the weather condition.
+ * @returns {string} - The path to the weather icon image.
+ */
 export const getWeatherIcon = (iconName: string) => {
   switch (iconName) {
     case '01d':

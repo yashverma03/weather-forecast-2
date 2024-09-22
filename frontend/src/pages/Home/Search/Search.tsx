@@ -11,14 +11,22 @@ const Search = () => {
   const { temperatureUnit, setTemperatureUnit } = useTemperature();
   const queryClient = useQueryClient();
 
+  /**
+   * Handles the change of temperature unit from the dropdown.
+   * @param event - The change event from the select input.
+   */
   const handleUnitChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value as TemperatureUnit;
     setTemperatureUnit(value);
   };
 
+  /**
+   * Handles the refresh action by invalidating queries.
+   * Prevents multiple calls if already loading.
+   */
   const handleRefresh = async () => {
     if (isLoading) {
-      return;
+      return; // Exit if a refresh is already in progress
     }
     setIsLoading(true);
     await queryClient.invalidateQueries({ queryKey: [QueryKeyEnum.FetchWeatherDetails] });

@@ -6,6 +6,7 @@ import { TemperatureProvider } from './contexts/temperature-context';
 import { lazy, Suspense } from 'react';
 import Spinner from './components/Spinner/Spinner';
 
+// Lazy load the Home component
 const Home = lazy(() => import('./pages/Home/Home'));
 
 const App = () => {
